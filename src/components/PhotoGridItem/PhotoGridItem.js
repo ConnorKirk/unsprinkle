@@ -5,7 +5,7 @@ const PhotoGridItem = ({ id, src, alt, tags }) => {
   return (
     <article>
       <Anchor href={`/photos/${id}`}>
-        <Image src={src} />
+        <Picture src={src} alt={alt} />
       </Anchor>
       <Tags>
         {tags.map((tag) => (
@@ -13,6 +13,27 @@ const PhotoGridItem = ({ id, src, alt, tags }) => {
         ))}
       </Tags>
     </article>
+  );
+};
+
+const Picture = ({ src, alt }) => {
+  const suffixes = [
+    ".jpg 1x",
+    ".avif 1x",
+    "@2x.jpg 2x",
+    "@2x.avif 2x",
+    "@3x.jpg 3x",
+    "@3x.avif 3x",
+  ];
+  const srcSet = suffixes
+    .map((suffix) => src.replace(".jpg", suffix))
+    .join(", ");
+
+  return (
+    <picture>
+      <source srcSet={srcSet} />
+      <Image src={src} alt={alt} />
+    </picture>
   );
 };
 
