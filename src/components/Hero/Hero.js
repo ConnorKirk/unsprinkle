@@ -1,14 +1,22 @@
 import React from 'react';
 import styled from 'styled-components/macro';
+import Source from "../Source";
 
 const Hero = () => {
   return (
     <Wrapper>
-      <HeroImage src="/images/hero-img.jpg" />
+      <HeroPicture src="/images/hero-img.jpg" />
       <Swoop src="/swoop.svg" />
     </Wrapper>
   );
 };
+
+const HeroPicture = ({ src }) => (
+  <picture>
+    <Source src={src} />
+    <HeroImage src={src} alt="a meaningful alt" />
+  </picture>
+);
 
 const Wrapper = styled.section`
   position: relative;

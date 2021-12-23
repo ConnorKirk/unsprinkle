@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
+import Source from "../Source";
 
 const PhotoGridItem = ({ id, src, alt, tags }) => {
   return (
@@ -16,26 +17,13 @@ const PhotoGridItem = ({ id, src, alt, tags }) => {
   );
 };
 
-const Picture = ({ src, alt }) => {
-  const suffixes = [
-    ".jpg 1x",
-    ".avif 1x",
-    "@2x.jpg 2x",
-    "@2x.avif 2x",
-    "@3x.jpg 3x",
-    "@3x.avif 3x",
-  ];
-  const srcSet = suffixes
-    .map((suffix) => src.replace(".jpg", suffix))
-    .join(", ");
+const Picture = ({ src, alt }) => (
+  <picture>
+    <Source src={src} />
+    <Image src={src} alt={alt} />
+  </picture>
+);
 
-  return (
-    <picture>
-      <source srcSet={srcSet} />
-      <Image src={src} alt={alt} />
-    </picture>
-  );
-};
 
 const Anchor = styled.a`
   text-decoration: none;
